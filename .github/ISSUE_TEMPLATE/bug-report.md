@@ -2,7 +2,7 @@
 name: "\U0001F41E Bug report"
 about: Report an issue with Reanimated
 title: ''
-labels: "needs-review"
+labels: "\U0001F41E Bug"
 assignees: ''
 ---
 
@@ -31,26 +31,18 @@ Here are some tips for providing a minimal example: [https://stackoverflow.com/h
 ## Package versions
 
 <!--
-What are the exact versions of packages and tools that you are using?
+Fill in your Reanimated and React Native versions below.
 
-Remove packages from the table that you're not using or list additional if relevant.
+List other libraries if relevant.
 -->
 
-| name                                 | version |
-| ------------------------------------ | ------- |
-| react-native                         |         |
-| react-native-reanimated              |         |
-| NodeJS                               |         |
-| Xcode                                |         |
-| Java                                 |         |
-| Gradle                               |         |
-| expo                                 |         |
+- React Native:
+- React Native Reanimated:
+- NodeJS:
+- Xcode:
+- Java & Gradle:
 
 ## Affected platforms
-
-<!--
-Please insert an "x" between the brackets of the affected platforms (e.g. - [x] iOS)
--->
 
 - [ ] Android
 - [ ] iOS

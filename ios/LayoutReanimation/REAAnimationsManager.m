@@ -1,9 +1,9 @@
-#import <RNReanimated/REAAnimationsManager.h>
-#import <RNReanimated/REAUIManager.h>
+#import "REAAnimationsManager.h"
 #import <React/RCTComponentData.h>
 #import <React/RCTTextView.h>
 #import <React/UIView+Private.h>
 #import <React/UIView+React.h>
+#import "REAUIManager.h"
 
 @interface REAAnimationsManager ()
 
@@ -14,7 +14,6 @@ typedef NS_ENUM(NSInteger, FrameConfigType) { EnteringFrame, ExitingFrame };
 
 - (void)removeLeftovers;
 - (void)scheduleCleaning;
-- (double)getDoubleOrZero:(NSNumber *)number;
 
 @end
 
@@ -151,10 +150,6 @@ typedef NS_ENUM(NSInteger, FrameConfigType) { EnteringFrame, ExitingFrame };
   NSMutableSet<NSNumber *> *roots = [NSMutableSet new];
   for (NSNumber *viewTag in _toRemove) {
     UIView *view = _viewForTag[viewTag];
-    if (view == nil) {
-      view = [_reaUiManager viewForReactTag:viewTag];
-      _viewForTag[viewTag] = view;
-    }
     [self findRoot:view roots:roots];
   }
   for (NSNumber *viewTag in roots) {
@@ -195,40 +190,31 @@ typedef NS_ENUM(NSInteger, FrameConfigType) { EnteringFrame, ExitingFrame };
   [self setNewProps:[newStyle mutableCopy] forView:_viewForTag[tag] withComponentData:componentData];
 }
 
-- (double)getDoubleOrZero:(NSNumber *)number
-{
-  double doubleValue = [number doubleValue];
-  if (doubleValue != doubleValue) { // NaN != NaN
-    return 0;
-  }
-  return doubleValue;
-}
-
 - (void)setNewProps:(NSMutableDictionary *)newProps
               forView:(UIView *)view
     withComponentData:(RCTComponentData *)componentData
 {
   if (newProps[@"height"]) {
-    double height = [self getDoubleOrZero:newProps[@"height"]];
+    double height = [newProps[@"height"] doubleValue];
     double oldHeight = view.bounds.size.height;
     view.bounds = CGRectMake(0, 0, view.bounds.size.width, height);
     view.center = CGPointMake(view.center.x, view.center.y - oldHeight / 2.0 + view.bounds.size.height / 2.0);
     [newProps removeObjectForKey:@"height"];
   }
   if (newProps[@"width"]) {
-    double width = [self getDoubleOrZero:newProps[@"width"]];
+    double width = [newProps[@"width"] doubleValue];
     double oldWidth = view.bounds.size.width;
     view.bounds = CGRectMake(0, 0, width, view.bounds.size.height);
     view.center = CGPointMake(view.center.x + view.bounds.size.width / 2.0 - oldWidth / 2.0, view.center.y);
     [newProps removeObjectForKey:@"width"];
   }
   if (newProps[@"originX"]) {
-    double originX = [self getDoubleOrZero:newProps[@"originX"]];
+    double originX = [newProps[@"originX"] doubleValue];
     view.center = CGPointMake(originX + view.bounds.size.width / 2.0, view.center.y);
     [newProps removeObjectForKey:@"originX"];
   }
   if (newProps[@"originY"]) {
-    double originY = [self getDoubleOrZero:newProps[@"originY"]];
+    double originY = [newProps[@"originY"] doubleValue];
     view.center = CGPointMake(view.center.x, originY + view.bounds.size.height / 2.0);
     [newProps removeObjectForKey:@"originY"];
   }

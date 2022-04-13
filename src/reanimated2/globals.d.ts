@@ -1,4 +1,4 @@
-import { AnimatedStyle, StyleProps } from './commonTypes';
+import { AnimatedStyle, StyleProps, WorkletFunction } from './commonTypes';
 import { ReanimatedConsole } from './core';
 import { MeasuredDimensions } from './NativeMethods';
 import { NativeReanimated } from './NativeReanimated/NativeReanimated';
@@ -27,11 +27,9 @@ declare global {
     animated: boolean
   ) => void;
   const _chronoNow: () => number;
-  const ReanimatedDataMock: {
-    now: () => number;
-  };
   namespace NodeJS {
     interface Global {
+      __reanimatedWorkletInit: (worklet: WorkletFunction) => void;
       _setGlobalConsole: (console?: ReanimatedConsole) => void;
       _log: (s: string) => void;
       _setGestureState: () => void;
@@ -51,9 +49,6 @@ declare global {
           type: string,
           yogaValues: unknown
         ): void;
-      };
-      ReanimatedDataMock: {
-        now: () => number;
       };
     }
   }

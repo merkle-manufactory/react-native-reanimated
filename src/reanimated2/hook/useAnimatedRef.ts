@@ -1,7 +1,11 @@
 import { Component, useRef } from 'react';
 import { getTag } from '../NativeMethods';
 import { useSharedValue } from './useSharedValue';
-import { RefObjectFunction } from './commonTypes';
+
+export interface RefObjectFunction<T> {
+  current: T | null;
+  (component?: T): number;
+}
 
 export function useAnimatedRef<T extends Component>(): RefObjectFunction<T> {
   const tag = useSharedValue<number | null>(-1);

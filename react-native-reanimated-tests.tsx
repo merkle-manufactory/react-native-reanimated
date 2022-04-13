@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback, forwardRef } from 'react';
 import {
-  Text,
   StyleSheet,
   Button,
   View,
@@ -46,14 +45,6 @@ import Animated, {
   createAnimatedPropAdapter,
   useAnimatedProps,
   useAnimatedRef,
-  TimingAnimation,
-  SpringAnimation,
-  DecayAnimation,
-  DelayAnimation,
-  RepeatAnimation,
-  SequenceAnimation,
-  StyleLayoutAnimation,
-  Animation,
   // eslint-disable-next-line import/no-unresolved
 } from 'react-native-reanimated';
 
@@ -79,8 +70,9 @@ const SomeFCWithRef = forwardRef((props: ViewProps) => {
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-const AnimatedTypedFlatList =
-  Animated.createAnimatedComponent<FlatListProps<Item[]>>(FlatList);
+const AnimatedTypedFlatList = Animated.createAnimatedComponent<
+  FlatListProps<Item[]>
+>(FlatList);
 
 // Function Component -> Animated Function Component
 const AnimatedFC = Animated.createAnimatedComponent(SomeFC);
@@ -88,12 +80,7 @@ const AnimatedFCWithRef = Animated.createAnimatedComponent(SomeFCWithRef);
 
 function CreateAnimatedComponentTest1() {
   const animatedProps = useAnimatedProps(() => ({ fill: 'blue' }));
-  return (
-    <AnimatedPath
-      animatedProps={animatedProps}
-      style={{ backgroundColor: 'red' }}
-    />
-  );
+  return <AnimatedPath animatedProps={animatedProps} />;
 }
 
 function CreateAnimatedComponentTest2() {
@@ -115,7 +102,7 @@ function CreateAnimatedComponentTest3() {
   );
 }
 
-function CreateAnimatedFlatListTest1() {
+function CreateAnimatedFlatList() {
   const renderItem = useCallback(
     ({ item, index }: { item: Item[]; index: number }) => {
       if (Math.random()) {
@@ -139,23 +126,6 @@ function CreateAnimatedFlatListTest1() {
         renderItem={() => null}
       />
       <AnimatedImage style={{ flex: 1 }} source={{ uri: '' }} />
-    </>
-  );
-}
-
-function CreateAnimatedFlatListTest2() {
-  return (
-    <>
-      <Animated.FlatList<Item>
-        // @ts-expect-error
-        data={[{ foo: 1 }]}
-        // @ts-expect-error
-        renderItem={({ item, index }) => <View key={item.foo} />}
-      />
-      <Animated.FlatList<Item>
-        data={[{ id: 1 }]}
-        renderItem={({ item, index }) => <View key={item.id} />}
-      />
     </>
   );
 }
@@ -355,15 +325,16 @@ function AnimatedGestureHandlerTest() {
 
 function AnimatedPinchGestureHandlerTest() {
   const x = useSharedValue(0);
-  const gestureHandler =
-    useAnimatedGestureHandler<PinchGestureHandlerGestureEvent>({
+  const gestureHandler = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent>(
+    {
       onActive: (event) => {
         x.value = event.scale;
       },
       onEnd: () => {
         x.value = withTiming(1);
       },
-    });
+    }
+  );
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -393,7 +364,7 @@ function WithTimingTest() {
         width.value,
         {
           duration: 500,
-          easing: Easing.bezierFn(0.25, 0.1, 0.25, 1),
+          easing: Easing.bezier(0.25, 0.1, 0.25, 1),
         },
         (finished) => {}
       ),
@@ -414,7 +385,7 @@ function WithTimingToValueAsColorTest() {
         'rgba(255,105,180,0)',
         {
           duration: 500,
-          easing: Easing.bezierFn(0.25, 0.1, 0.25, 1),
+          easing: Easing.bezier(0.25, 0.1, 0.25, 1),
         },
         (_finished) => {}
       ),

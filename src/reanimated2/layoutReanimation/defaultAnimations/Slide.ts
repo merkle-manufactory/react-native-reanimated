@@ -12,8 +12,7 @@ const { width, height } = Dimensions.get('window');
 
 export class SlideInRight
   extends ComplexAnimationBuilder
-  implements IEntryAnimationBuilder
-{
+  implements IEntryAnimationBuilder {
   static createInstance(): SlideInRight {
     return new SlideInRight();
   }
@@ -23,7 +22,6 @@ export class SlideInRight
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -36,7 +34,6 @@ export class SlideInRight
         },
         initialValues: {
           originX: values.targetOriginX + width,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -46,8 +43,7 @@ export class SlideInRight
 
 export class SlideInLeft
   extends ComplexAnimationBuilder
-  implements IEntryAnimationBuilder
-{
+  implements IEntryAnimationBuilder {
   static createInstance(): SlideInLeft {
     return new SlideInLeft();
   }
@@ -57,7 +53,6 @@ export class SlideInLeft
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -70,7 +65,6 @@ export class SlideInLeft
         },
         initialValues: {
           originX: values.targetOriginX - width,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -80,8 +74,7 @@ export class SlideInLeft
 
 export class SlideOutRight
   extends ComplexAnimationBuilder
-  implements IExitAnimationBuilder
-{
+  implements IExitAnimationBuilder {
   static createInstance(): SlideOutRight {
     return new SlideOutRight();
   }
@@ -91,7 +84,6 @@ export class SlideOutRight
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -104,7 +96,6 @@ export class SlideOutRight
         },
         initialValues: {
           originX: values.currentOriginX,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -114,8 +105,7 @@ export class SlideOutRight
 
 export class SlideOutLeft
   extends ComplexAnimationBuilder
-  implements IExitAnimationBuilder
-{
+  implements IExitAnimationBuilder {
   static createInstance(): SlideOutLeft {
     return new SlideOutLeft();
   }
@@ -125,7 +115,6 @@ export class SlideOutLeft
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -138,7 +127,6 @@ export class SlideOutLeft
         },
         initialValues: {
           originX: values.currentOriginX,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -148,8 +136,7 @@ export class SlideOutLeft
 
 export class SlideInUp
   extends ComplexAnimationBuilder
-  implements IEntryAnimationBuilder
-{
+  implements IEntryAnimationBuilder {
   static createInstance(): SlideInUp {
     return new SlideInUp();
   }
@@ -159,7 +146,6 @@ export class SlideInUp
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -172,7 +158,6 @@ export class SlideInUp
         },
         initialValues: {
           originY: -height,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -182,8 +167,7 @@ export class SlideInUp
 
 export class SlideInDown
   extends ComplexAnimationBuilder
-  implements IEntryAnimationBuilder
-{
+  implements IEntryAnimationBuilder {
   static createInstance(): SlideInDown {
     return new SlideInDown();
   }
@@ -193,7 +177,6 @@ export class SlideInDown
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -206,7 +189,6 @@ export class SlideInDown
         },
         initialValues: {
           originY: values.targetOriginY + height,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -216,8 +198,7 @@ export class SlideInDown
 
 export class SlideOutUp
   extends ComplexAnimationBuilder
-  implements IExitAnimationBuilder
-{
+  implements IExitAnimationBuilder {
   static createInstance(): SlideOutUp {
     return new SlideOutUp();
   }
@@ -227,7 +208,6 @@ export class SlideOutUp
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -238,7 +218,7 @@ export class SlideOutUp
             animation(Math.min(values.currentOriginY - height, -height), config)
           ),
         },
-        initialValues: { originY: values.currentOriginY, ...initialValues },
+        initialValues: { originY: values.currentOriginY },
         callback: callback,
       };
     };
@@ -247,8 +227,7 @@ export class SlideOutUp
 
 export class SlideOutDown
   extends ComplexAnimationBuilder
-  implements IExitAnimationBuilder
-{
+  implements IExitAnimationBuilder {
   static createInstance(): SlideOutDown {
     return new SlideOutDown();
   }
@@ -258,7 +237,6 @@ export class SlideOutDown
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -269,7 +247,7 @@ export class SlideOutDown
             animation(Math.max(values.currentOriginY + height, height), config)
           ),
         },
-        initialValues: { originY: values.currentOriginY, ...initialValues },
+        initialValues: { originY: values.currentOriginY },
         callback: callback,
       };
     };

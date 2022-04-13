@@ -1,4 +1,4 @@
-#import <RNReanimated/RCTConvert+REATransition.h>
+#import "RCTConvert+REATransition.h"
 
 @implementation RCTConvert (REATransition)
 

@@ -9,8 +9,7 @@ const { width } = Dimensions.get('window');
 
 export class RollInLeft
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): RollInLeft {
     return new RollInLeft();
   }
@@ -20,7 +19,6 @@ export class RollInLeft
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -33,7 +31,6 @@ export class RollInLeft
         },
         initialValues: {
           transform: [{ translateX: -width }, { rotate: '-180deg' }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -43,8 +40,7 @@ export class RollInLeft
 
 export class RollInRight
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): RollInRight {
     return new RollInRight();
   }
@@ -54,7 +50,6 @@ export class RollInRight
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -67,7 +62,6 @@ export class RollInRight
         },
         initialValues: {
           transform: [{ translateX: width }, { rotate: '180deg' }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -77,8 +71,7 @@ export class RollInRight
 
 export class RollOutLeft
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): RollOutLeft {
     return new RollOutLeft();
   }
@@ -88,7 +81,6 @@ export class RollOutLeft
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -101,7 +93,6 @@ export class RollOutLeft
         },
         initialValues: {
           transform: [{ translateX: 0 }, { rotate: '0deg' }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -111,8 +102,7 @@ export class RollOutLeft
 
 export class RollOutRight
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): RollOutRight {
     return new RollOutRight();
   }
@@ -122,7 +112,6 @@ export class RollOutRight
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -135,7 +124,6 @@ export class RollOutRight
         },
         initialValues: {
           transform: [{ translateX: 0 }, { rotate: '0deg' }],
-          ...initialValues,
         },
         callback: callback,
       };

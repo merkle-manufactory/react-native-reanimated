@@ -1,9 +1,10 @@
-#import <RNReanimated/REABezierNode.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAUtils.h>
+#include <tgmath.h>
+
 #import <React/RCTConvert.h>
 #import <React/RCTLog.h>
-#include <tgmath.h>
+#import "REABezierNode.h"
+#import "REANodesManager.h"
+#import "REAUtils.h"
 
 #define EPS 1e-5
 

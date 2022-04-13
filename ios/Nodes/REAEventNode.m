@@ -1,6 +1,6 @@
-#import <RNReanimated/REAEventNode.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAValueNode.h>
+#import "REAEventNode.h"
+#import "REANodesManager.h"
+#import "REAValueNode.h"
 
 @implementation REAEventNode {
   NSArray *_argMapping;

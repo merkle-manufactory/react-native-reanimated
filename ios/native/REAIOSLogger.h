@@ -1,5 +1,7 @@
-#import <RNReanimated/ReanimatedHiddenHeaders.h>
+#pragma once
+
 #include <stdio.h>
+#include "ReanimatedHiddenHeaders.h"
 
 namespace reanimated {
 

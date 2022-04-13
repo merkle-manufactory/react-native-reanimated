@@ -1,4 +1,5 @@
 import { MutableRefObject, useEffect, useRef } from 'react';
+import { AnimationObject } from '../animation';
 import { processColor } from '../Colors';
 import {
   AnimatedStyle,
@@ -6,10 +7,9 @@ import {
   NestedObjectValues,
   StyleProps,
   WorkletFunction,
-  AnimationObject,
 } from '../commonTypes';
 import { makeRemote } from '../core';
-import { isWeb, isJest } from '../PlatformChecker';
+import { isWeb } from '../PlatformChecker';
 import { colorProps } from '../UpdateProps';
 import WorkletEventHandler from '../WorkletEventHandler';
 import {
@@ -80,7 +80,7 @@ export function useHandler<T, TContext extends Context>(
     savedDependencies
   );
   initRef.current.savedDependencies = dependencies;
-  const useWeb = isWeb() || isJest();
+  const useWeb = isWeb();
 
   return { context, doDependenciesDiffer, useWeb };
 }
@@ -163,12 +163,7 @@ export function parseColors(updates: AnimatedStyle): void {
   'worklet';
   for (const key in updates) {
     if (colorProps.indexOf(key) !== -1) {
-      // value could be an animation in which case processColor will recognize it and will return undefined
-      // -> in such a case we don't want to override style of that key
-      const processedColor = processColor(updates[key]);
-      if (processedColor !== undefined) {
-        updates[key] = processedColor;
-      }
+      updates[key] = processColor(updates[key]);
     }
   }
 }
@@ -187,8 +182,7 @@ export function isAnimated(prop: NestedObjectValues<AnimationObject>): boolean {
   'worklet';
   const propsToCheck: NestedObjectValues<AnimationObject>[] = [prop];
   while (propsToCheck.length > 0) {
-    const currentProp: NestedObjectValues<AnimationObject> =
-      propsToCheck.pop() as NestedObjectValues<AnimationObject>;
+    const currentProp: NestedObjectValues<AnimationObject> = propsToCheck.pop() as NestedObjectValues<AnimationObject>;
     if (Array.isArray(currentProp)) {
       for (const item of currentProp) {
         propsToCheck.push(item);
@@ -207,29 +201,33 @@ export function isAnimated(prop: NestedObjectValues<AnimationObject>): boolean {
   return false;
 }
 
-export function styleDiff<T extends AnimatedStyle>(
+export function styleDiff(
   oldStyle: AnimatedStyle,
   newStyle: AnimatedStyle
-): Partial<T> {
+): AnimatedStyle {
   'worklet';
-  const diff: any = {};
-  for (const key in oldStyle) {
+  const diff: AnimatedStyle = {};
+  Object.keys(oldStyle).forEach((key) => {
     if (newStyle[key] === undefined) {
       diff[key] = null;
     }
-  }
-  for (const key in newStyle) {
+  });
+  Object.keys(newStyle).forEach((key) => {
     const value = newStyle[key];
     const oldValue = oldStyle[key];
 
     if (isAnimated(value)) {
       // do nothing
-      continue;
+      return;
     }
-    if (oldValue !== value) {
+    if (
+      oldValue !== value &&
+      JSON.stringify(oldValue) !== JSON.stringify(value)
+    ) {
+      // I'd use deep equal here but that'd take additional work and this was easier
       diff[key] = value;
     }
-  }
+  });
   return diff;
 }
 

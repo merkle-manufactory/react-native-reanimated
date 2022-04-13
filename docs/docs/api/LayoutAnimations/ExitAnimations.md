@@ -55,7 +55,6 @@ Simple animation based on changing of opacity.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -76,7 +75,6 @@ Animation based on smoothly shaking of component.
 * `duration` (in ms) default: 250
 * `delay` (in ms) default: 0
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -106,7 +104,6 @@ Animation based on smoothly shaking of component.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -132,7 +129,6 @@ Animation based on changing width or height of object.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -164,7 +160,6 @@ Animation based on changing scale of object.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 #### Example
 <video src="https://user-images.githubusercontent.com/36106620/120317554-0efeb080-c2df-11eb-88cf-6ec47778dccb.mov" controls="controls" muted="muted"></video>
@@ -191,7 +186,6 @@ Animation based on horizontal or vertical moving of object.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -217,7 +211,6 @@ Animation based on horizontal moving of object with changing of opacity and skew
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -242,7 +235,6 @@ Animation based on rotation with scale and opacity change.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -268,7 +260,6 @@ Animation based on horizontal moving of object with rotation.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example
@@ -296,7 +287,6 @@ Animation based on rotation of object.
 * `restDisplacementThreshold` default: 0.001
 * `restSpeedThreshold` default: 0.001
 * `withCallback` callback that will fire after the exit animation ends
-* `withInitialValues` sets the initial values
 * `randomDelay` randomize delay of the animation between 0 and provided delay ( or 1000ms if delay not provided )
 
 #### Example

@@ -1,4 +1,4 @@
-/* eslint-disable node/no-callback-literal */
+/* eslint-disable standard/no-callback-literal */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 const NOOP = () => {
@@ -59,8 +59,7 @@ const ReanimatedV2 = {
     elastic: ID,
     back: ID,
     bounce: ID,
-    bezier: () => ({ factory: ID }),
-    bezierFn: ID,
+    bezier: ID,
     in: ID,
     out: ID,
     inOut: ID,

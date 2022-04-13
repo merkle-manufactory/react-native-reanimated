@@ -1,7 +1,7 @@
 
-#import <RNReanimated/REAFunctionNode.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAParamNode.h>
+#import "REAFunctionNode.h"
+#import "REANodesManager.h"
+#import "REAParamNode.h"
 
 @implementation REAFunctionNode {
   NSNumber *_nodeToBeEvaluated;

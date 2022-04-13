@@ -1,11 +1,11 @@
-#import <RNReanimated/REAAlwaysNode.h>
-#import <RNReanimated/REAModule.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAStyleNode.h>
-#import <RNReanimated/REAUtils.h>
+#import "REAAlwaysNode.h"
 #import <React/RCTConvert.h>
 #import <React/RCTLog.h>
 #import <React/RCTUIManager.h>
+#import "REAModule.h"
+#import "REANodesManager.h"
+#import "REAStyleNode.h"
+#import "REAUtils.h"
 
 @implementation REAAlwaysNode {
   NSNumber *_nodeToBeEvaluated;

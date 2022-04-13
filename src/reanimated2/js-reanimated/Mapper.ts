@@ -1,5 +1,5 @@
 import { NestedObjectValues } from '../commonTypes';
-import { JSReanimated } from './commonTypes';
+import JSReanimated from './JSReanimated';
 import MutableValue from './MutableValue';
 
 export default class Mapper<T> {

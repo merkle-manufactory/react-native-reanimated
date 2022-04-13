@@ -1,7 +1,8 @@
-#import <RNReanimated/NativeProxy.h>
-#import <RNReanimated/REAModule.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REATransitionManager.h>
+#import "REAModule.h"
+
+#import "REANodesManager.h"
+#import "Transitioning/REATransitionManager.h"
+#import "native/NativeProxy.h"
 
 typedef void (^AnimatedOperation)(REANodesManager *nodesManager);
 
@@ -27,8 +28,6 @@ RCT_EXPORT_MODULE(ReanimatedModule);
   return RCTGetUIManagerQueue();
 }
 
-#pragma mark-- Initialize
-
 - (void)setBridge:(RCTBridge *)bridge
 {
   [super setBridge:bridge];
@@ -39,11 +38,6 @@ RCT_EXPORT_MODULE(ReanimatedModule);
   _transitionManager = [[REATransitionManager alloc] initWithUIManager:self.bridge.uiManager];
 
   [bridge.uiManager.observerCoordinator addObserver:self];
-}
-
-RCT_EXPORT_METHOD(installTurboModule)
-{
-  // TODO: Move initialization from UIResponder+Reanimated to here
 }
 
 #pragma mark-- Transitioning API
@@ -125,6 +119,15 @@ RCT_EXPORT_METHOD(detachEvent
   }];
 }
 
+RCT_EXPORT_METHOD(configureProps
+                  : (nonnull NSArray<NSString *> *)nativeProps uiProps
+                  : (nonnull NSArray<NSString *> *)uiProps)
+{
+  [self addOperationBlock:^(REANodesManager *nodesManager) {
+    [nodesManager configureProps:[NSSet setWithArray:nativeProps] uiProps:[NSSet setWithArray:uiProps]];
+  }];
+}
+
 RCT_EXPORT_METHOD(setValue : (nonnull NSNumber *)nodeID newValue : (nonnull NSNumber *)newValue)
 {
   [self addOperationBlock:^(REANodesManager *nodesManager) {
@@ -150,7 +153,6 @@ RCT_EXPORT_METHOD(triggerRender)
 
 - (void)uiManagerWillPerformMounting:(RCTUIManager *)uiManager
 {
-  [_nodesManager maybeFlushUpdateBuffer];
   if (_operations.count == 0) {
     return;
   }

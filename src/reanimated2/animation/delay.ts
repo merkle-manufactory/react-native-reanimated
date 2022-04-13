@@ -1,6 +1,20 @@
 import { defineAnimation } from './util';
-import { Animation, Timestamp, AnimatableValue } from '../commonTypes';
-import { NextAnimation, DelayAnimation } from './commonTypes';
+import {
+  Animation,
+  NextAnimation,
+  Timestamp,
+  HigherOrderAnimation,
+  AnimatableValue,
+} from './commonTypes';
+
+export interface DelayAnimation
+  extends Animation<DelayAnimation>,
+    HigherOrderAnimation {
+  startTime: Timestamp;
+  started: boolean;
+  previousAnimation: DelayAnimation | null;
+  current: AnimatableValue;
+}
 
 export function withDelay(
   delayMs: number,

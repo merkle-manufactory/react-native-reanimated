@@ -6,8 +6,7 @@ import {
 
 export class LinearTransition
   extends ComplexAnimationBuilder
-  implements ILayoutAnimationBuilder
-{
+  implements ILayoutAnimationBuilder {
   static createInstance(): LinearTransition {
     return new LinearTransition();
   }

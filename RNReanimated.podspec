@@ -3,34 +3,27 @@ require "json"
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
 reactVersion = '0.0.0'
-reactTargetTvOS = false
 
 begin
   # standard app
   # /appName/node_modules/react-native-reanimated/RNReanimated.podspec
   # /appName/node_modules/react-native/package.json
-  reactJson = JSON.parse(File.read(File.join(__dir__, "..", "..", "node_modules", "react-native", "package.json")))
-  reactVersion = reactJson["version"]
-  reactTargetTvOS = reactJson["name"] == "react-native-tvos"
+  reactVersion = JSON.parse(File.read(File.join(__dir__, "..", "..", "node_modules", "react-native", "package.json")))["version"]
 rescue
   begin
     # monorepo
     # /monorepo/packages/appName/node_modules/react-native-reanimated/RNReanimated.podspec
     # /monorepo/node_modules/react-native/package.json
-    reactJson = JSON.parse(File.read(File.join(__dir__, "..", "..", "..", "..", "node_modules", "react-native", "package.json")))
-    reactVersion = reactJson["version"]
-    reactTargetTvOS = reactJson["name"] == "react-native-tvos"
+    reactVersion = JSON.parse(File.read(File.join(__dir__, "..", "..", "..", "..", "node_modules", "react-native", "package.json")))["version"]
   rescue
     begin
       # Example app in reanimated repo
       # /react-native-reanimated/RNReanimated.podspec
       # /react-native-reanimated/node_modules/react-native/package.json
-      reactJson = JSON.parse(File.read(File.join(__dir__, "node_modules", "react-native", "package.json")))
-      reactVersion = reactJson["version"]
-      reactTargetTvOS = ENV["ReanimatedTVOSExample"] == "1"
+      reactVersion = JSON.parse(File.read(File.join(__dir__, "node_modules", "react-native", "package.json")))["version"]
     rescue
       # should never happen
-      reactVersion = '0.68.0'
+      reactVersion = '0.66.0'
       puts "[RNReanimated] Unable to recognized your `react-native` version! Default `react-native` version: " + reactVersion
     end
   end
@@ -85,7 +78,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.dependency "React-Core"
+  s.dependency "React"
   s.dependency 'FBLazyVector'
   s.dependency 'FBReactNativeSpec'
   s.dependency 'RCTRequired'
@@ -93,9 +86,7 @@ Pod::Spec.new do |s|
   s.dependency 'React-Core'
   s.dependency 'React-CoreModules'
   s.dependency 'React-Core/DevSupport'
-  if !reactTargetTvOS
-    s.dependency 'React-RCTActionSheet'
-  end
+  s.dependency 'React-RCTActionSheet'
   s.dependency 'React-RCTNetwork'
   s.dependency 'React-RCTAnimation'
   s.dependency 'React-RCTLinking'

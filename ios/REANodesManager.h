@@ -1,7 +1,8 @@
 #import <Foundation/Foundation.h>
-#import <RNReanimated/REANode.h>
+
 #import <React/RCTBridgeModule.h>
 #import <React/RCTUIManager.h>
+#import "REANode.h"
 
 @class REAModule;
 
@@ -63,8 +64,7 @@ typedef void (^REAEventHandler)(NSString *eventName, id<RCTEvent> event);
 
 // configuration
 
-- (void)configureUiProps:(nonnull NSSet<NSString *> *)uiPropsSet
-          andNativeProps:(nonnull NSSet<NSString *> *)nativePropsSet;
+- (void)configureProps:(nonnull NSSet<NSString *> *)nativeProps uiProps:(nonnull NSSet<NSString *> *)uiProps;
 
 - (void)updateProps:(nonnull NSDictionary *)props
       ofViewWithTag:(nonnull NSNumber *)viewTag
@@ -77,7 +77,5 @@ typedef void (^REAEventHandler)(NSString *eventName, id<RCTEvent> event);
 - (void)dispatchEvent:(id<RCTEvent>)event;
 
 - (void)setValueForNodeID:(nonnull NSNumber *)nodeID value:(nonnull NSNumber *)newValue;
-
-- (void)maybeFlushUpdateBuffer;
 
 @end

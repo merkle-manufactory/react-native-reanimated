@@ -14,8 +14,7 @@ const { width, height } = Dimensions.get('window');
 
 export class ZoomIn
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomIn {
     return new ZoomIn();
   }
@@ -25,7 +24,6 @@ export class ZoomIn
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -35,7 +33,6 @@ export class ZoomIn
         },
         initialValues: {
           transform: [{ scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -45,8 +42,7 @@ export class ZoomIn
 
 export class ZoomInRotate
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomInRotate {
     return new ZoomInRotate();
   }
@@ -57,7 +53,6 @@ export class ZoomInRotate
     const delay = this.getDelay();
     const rotate = this.rotateV ? this.rotateV : '0.3';
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -70,7 +65,6 @@ export class ZoomInRotate
         },
         initialValues: {
           transform: [{ scale: 0 }, { rotate: rotate }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -80,8 +74,7 @@ export class ZoomInRotate
 
 export class ZoomInLeft
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomInLeft {
     return new ZoomInLeft();
   }
@@ -91,7 +84,6 @@ export class ZoomInLeft
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -104,7 +96,6 @@ export class ZoomInLeft
         },
         initialValues: {
           transform: [{ translateX: -width }, { scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -114,8 +105,7 @@ export class ZoomInLeft
 
 export class ZoomInRight
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomInRight {
     return new ZoomInRight();
   }
@@ -125,7 +115,6 @@ export class ZoomInRight
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -138,7 +127,6 @@ export class ZoomInRight
         },
         initialValues: {
           transform: [{ translateX: width }, { scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -148,8 +136,7 @@ export class ZoomInRight
 
 export class ZoomInUp
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomInUp {
     return new ZoomInUp();
   }
@@ -159,7 +146,6 @@ export class ZoomInUp
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -172,7 +158,6 @@ export class ZoomInUp
         },
         initialValues: {
           transform: [{ translateY: -height }, { scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -182,8 +167,7 @@ export class ZoomInUp
 
 export class ZoomInDown
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomInDown {
     return new ZoomInDown();
   }
@@ -193,7 +177,6 @@ export class ZoomInDown
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -206,7 +189,6 @@ export class ZoomInDown
         },
         initialValues: {
           transform: [{ translateY: height }, { scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -216,8 +198,7 @@ export class ZoomInDown
 
 export class ZoomInEasyUp
   extends ComplexAnimationBuilder
-  implements IEntryAnimationBuilder
-{
+  implements IEntryAnimationBuilder {
   static createInstance(): ZoomInEasyUp {
     return new ZoomInEasyUp();
   }
@@ -227,7 +208,6 @@ export class ZoomInEasyUp
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -240,7 +220,6 @@ export class ZoomInEasyUp
         },
         initialValues: {
           transform: [{ translateY: -values.targetHeight }, { scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -250,8 +229,7 @@ export class ZoomInEasyUp
 
 export class ZoomInEasyDown
   extends ComplexAnimationBuilder
-  implements IEntryAnimationBuilder
-{
+  implements IEntryAnimationBuilder {
   static createInstance(): ZoomInEasyDown {
     return new ZoomInEasyDown();
   }
@@ -261,7 +239,6 @@ export class ZoomInEasyDown
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -274,7 +251,6 @@ export class ZoomInEasyDown
         },
         initialValues: {
           transform: [{ translateY: values.targetHeight }, { scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -284,8 +260,7 @@ export class ZoomInEasyDown
 
 export class ZoomOut
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomOut {
     return new ZoomOut();
   }
@@ -295,7 +270,6 @@ export class ZoomOut
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -305,7 +279,6 @@ export class ZoomOut
         },
         initialValues: {
           transform: [{ scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -315,8 +288,7 @@ export class ZoomOut
 
 export class ZoomOutRotate
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomOutRotate {
     return new ZoomOutRotate();
   }
@@ -327,7 +299,6 @@ export class ZoomOutRotate
     const delay = this.getDelay();
     const rotate = this.rotateV ? this.rotateV : '0.3';
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -340,7 +311,6 @@ export class ZoomOutRotate
         },
         initialValues: {
           transform: [{ scale: 1 }, { rotate: '0' }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -350,8 +320,7 @@ export class ZoomOutRotate
 
 export class ZoomOutLeft
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomOutLeft {
     return new ZoomOutLeft();
   }
@@ -361,7 +330,6 @@ export class ZoomOutLeft
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -374,7 +342,6 @@ export class ZoomOutLeft
         },
         initialValues: {
           transform: [{ translateX: 0 }, { scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -384,8 +351,7 @@ export class ZoomOutLeft
 
 export class ZoomOutRight
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomOutRight {
     return new ZoomOutRight();
   }
@@ -395,7 +361,6 @@ export class ZoomOutRight
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -408,7 +373,6 @@ export class ZoomOutRight
         },
         initialValues: {
           transform: [{ translateX: 0 }, { scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -418,8 +382,7 @@ export class ZoomOutRight
 
 export class ZoomOutUp
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomOutUp {
     return new ZoomOutUp();
   }
@@ -429,7 +392,6 @@ export class ZoomOutUp
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -442,7 +404,6 @@ export class ZoomOutUp
         },
         initialValues: {
           transform: [{ translateY: 0 }, { scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -452,8 +413,7 @@ export class ZoomOutUp
 
 export class ZoomOutDown
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): ZoomOutDown {
     return new ZoomOutDown();
   }
@@ -463,7 +423,6 @@ export class ZoomOutDown
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -476,7 +435,6 @@ export class ZoomOutDown
         },
         initialValues: {
           transform: [{ translateY: 0 }, { scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -486,8 +444,7 @@ export class ZoomOutDown
 
 export class ZoomOutEasyUp
   extends ComplexAnimationBuilder
-  implements IExitAnimationBuilder
-{
+  implements IExitAnimationBuilder {
   static createInstance(): ZoomOutEasyUp {
     return new ZoomOutEasyUp();
   }
@@ -497,7 +454,6 @@ export class ZoomOutEasyUp
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -515,7 +471,6 @@ export class ZoomOutEasyUp
         },
         initialValues: {
           transform: [{ translateY: 0 }, { scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -525,8 +480,7 @@ export class ZoomOutEasyUp
 
 export class ZoomOutEasyDown
   extends ComplexAnimationBuilder
-  implements IExitAnimationBuilder
-{
+  implements IExitAnimationBuilder {
   static createInstance(): ZoomOutEasyDown {
     return new ZoomOutEasyDown();
   }
@@ -536,7 +490,6 @@ export class ZoomOutEasyDown
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return (values) => {
       'worklet';
@@ -554,7 +507,6 @@ export class ZoomOutEasyDown
         },
         initialValues: {
           transform: [{ translateY: 0 }, { scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };

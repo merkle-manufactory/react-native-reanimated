@@ -1,7 +1,9 @@
-#import <RNReanimated/ErrorHandler.h>
-#import <RNReanimated/Scheduler.h>
+#pragma once
+
 #include <memory>
 #include <string>
+#include "ErrorHandler.h"
+#include "Scheduler.h"
 
 namespace reanimated {
 

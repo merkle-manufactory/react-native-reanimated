@@ -5,7 +5,7 @@
 #import <React/RCTUIManagerObserverCoordinator.h>
 #import <React/RCTUIManagerUtils.h>
 
-#import <RNReanimated/REAValueNode.h>
+#import "REAValueNode.h"
 
 @interface REAModule : RCTEventEmitter <RCTBridgeModule, RCTEventDispatcherObserver, RCTUIManagerObserver>
 

@@ -1,7 +1,5 @@
 package com.swmansion.reanimated.layoutReanimation;
 
-import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
@@ -195,69 +193,36 @@ class ReaLayoutAnimator extends LayoutAnimationController {
 }
 
 public class ReanimatedNativeHierarchyManager extends NativeViewHierarchyManager {
-  private final HashMap<Integer, ArrayList<View>> toBeRemoved = new HashMap<>();
-  private final HashMap<Integer, Runnable> cleanerCallback = new HashMap<>();
+  private HashMap<Integer, ArrayList<View>> toBeRemoved = new HashMap();
+  private HashMap<Integer, Runnable> cleanerCallback = new HashMap();
   private LayoutAnimationController mReaLayoutAnimator = null;
-  private HashMap<Integer, Set<Integer>> mPendingDeletionsForTag = new HashMap<>();
-  private boolean initOk = true;
+  private HashMap<Integer, Set<Integer>> mPendingDeletionsForTag = null;
 
   public ReanimatedNativeHierarchyManager(
       ViewManagerRegistry viewManagers, ReactApplicationContext reactContext) {
     super(viewManagers);
-
-    mReaLayoutAnimator = new ReaLayoutAnimator(reactContext, this);
-
     Class clazz = this.getClass().getSuperclass();
-    if (clazz == null) {
-      Log.e("reanimated", "unable to resolve super class of ReanimatedNativeHierarchyManager");
-      return;
-    }
-
     try {
-      Field layoutAnimatorField = clazz.getDeclaredField("mLayoutAnimator");
-      layoutAnimatorField.setAccessible(true);
+      Field field = clazz.getDeclaredField("mLayoutAnimator");
+      field.setAccessible(true);
+      Field modifiersField = Field.class.getDeclaredField("accessFlags");
+      modifiersField.setAccessible(true);
+      modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+      mReaLayoutAnimator = new ReaLayoutAnimator(reactContext, this);
+      field.set(this, mReaLayoutAnimator);
 
-      if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        try {
-          // accessFlags is supported only by API >=23
-          Field modifiersField = Field.class.getDeclaredField("accessFlags");
-          modifiersField.setAccessible(true);
-          modifiersField.setInt(
-              layoutAnimatorField, layoutAnimatorField.getModifiers() & ~Modifier.FINAL);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-          e.printStackTrace();
-        }
-      }
-      layoutAnimatorField.set(this, mReaLayoutAnimator);
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      initOk = false;
-      e.printStackTrace();
-    }
-
-    try {
       Field pendingTagsField = clazz.getDeclaredField("mPendingDeletionsForTag");
       pendingTagsField.setAccessible(true);
-
-      if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        try {
-          // accessFlags is supported only by API >=23
-          Field pendingTagsFieldModifiers = Field.class.getDeclaredField("accessFlags");
-          pendingTagsFieldModifiers.setAccessible(true);
-          pendingTagsFieldModifiers.setInt(
-              pendingTagsField, pendingTagsField.getModifiers() & ~Modifier.FINAL);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-          e.printStackTrace();
-        }
-      }
+      Field pendingTagsFieldModifiers = Field.class.getDeclaredField("accessFlags");
+      pendingTagsFieldModifiers.setAccessible(true);
+      pendingTagsFieldModifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+      mPendingDeletionsForTag = new HashMap<Integer, Set<Integer>>();
       pendingTagsField.set(this, mPendingDeletionsForTag);
+
     } catch (NoSuchFieldException | IllegalAccessException e) {
-      initOk = false;
       e.printStackTrace();
     }
-
-    if (initOk) {
-      setLayoutAnimationEnabled(true);
-    }
+    setLayoutAnimationEnabled(true);
   }
 
   public ReanimatedNativeHierarchyManager(
@@ -265,14 +230,10 @@ public class ReanimatedNativeHierarchyManager extends NativeViewHierarchyManager
     super(viewManagers, manager);
   }
 
-  private boolean isLayoutAnimationDisabled() {
-    return !initOk || !((ReaLayoutAnimator) mReaLayoutAnimator).isLayoutAnimationEnabled();
-  }
-
   public synchronized void updateLayout(
       int parentTag, int tag, int x, int y, int width, int height) {
     super.updateLayout(parentTag, tag, x, y, width, height);
-    if (isLayoutAnimationDisabled()) {
+    if (!((ReaLayoutAnimator) mReaLayoutAnimator).isLayoutAnimationEnabled()) {
       return;
     }
     try {
@@ -302,7 +263,7 @@ public class ReanimatedNativeHierarchyManager extends NativeViewHierarchyManager
       @Nullable int[] indicesToRemove,
       @Nullable ViewAtIndex[] viewsToAdd,
       @Nullable int[] tagsToDelete) {
-    if (isLayoutAnimationDisabled()) {
+    if (!((ReaLayoutAnimator) mReaLayoutAnimator).isLayoutAnimationEnabled()) {
       super.manageChildren(tag, indicesToRemove, viewsToAdd, tagsToDelete);
       return;
     }
@@ -391,7 +352,7 @@ public class ReanimatedNativeHierarchyManager extends NativeViewHierarchyManager
 
   @Override
   protected synchronized void dropView(View view) {
-    if (isLayoutAnimationDisabled()) {
+    if (!((ReaLayoutAnimator) mReaLayoutAnimator).isLayoutAnimationEnabled()) {
       super.dropView(view);
       return;
     }

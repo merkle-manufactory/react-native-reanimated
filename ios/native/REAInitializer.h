@@ -1,3 +1,10 @@
+//
+//  REAInitializer.h
+//  RNReanimated
+//
+//  Created by Szymon Kapala on 27/07/2021.
+//
+
 #import <Foundation/Foundation.h>
 #import <RNReanimated/NativeProxy.h>
 #import <RNReanimated/REAEventDispatcher.h>

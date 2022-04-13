@@ -6,8 +6,7 @@ import { ComplexAnimationBuilder } from '../animationBuilder';
 
 export class FadeIn
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeIn {
     return new FadeIn();
   }
@@ -16,7 +15,6 @@ export class FadeIn
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return (_) => {
@@ -27,7 +25,6 @@ export class FadeIn
         },
         initialValues: {
           opacity: 0,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -37,8 +34,7 @@ export class FadeIn
 
 export class FadeInRight
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeInRight {
     return new FadeInRight();
   }
@@ -47,7 +43,6 @@ export class FadeInRight
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -62,7 +57,6 @@ export class FadeInRight
         initialValues: {
           opacity: 0,
           transform: [{ translateX: 25 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -72,8 +66,7 @@ export class FadeInRight
 
 export class FadeInLeft
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeInLeft {
     return new FadeInLeft();
   }
@@ -82,7 +75,6 @@ export class FadeInLeft
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -97,7 +89,6 @@ export class FadeInLeft
         initialValues: {
           opacity: 0,
           transform: [{ translateX: -25 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -107,8 +98,7 @@ export class FadeInLeft
 
 export class FadeInUp
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeInUp {
     return new FadeInUp();
   }
@@ -117,7 +107,6 @@ export class FadeInUp
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -132,7 +121,6 @@ export class FadeInUp
         initialValues: {
           opacity: 0,
           transform: [{ translateY: -25 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -142,8 +130,7 @@ export class FadeInUp
 
 export class FadeInDown
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeInDown {
     return new FadeInDown();
   }
@@ -152,7 +139,6 @@ export class FadeInDown
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -167,7 +153,6 @@ export class FadeInDown
         initialValues: {
           opacity: 0,
           transform: [{ translateY: 25 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -177,8 +162,7 @@ export class FadeInDown
 
 export class FadeOut
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeOut {
     return new FadeOut();
   }
@@ -187,7 +171,6 @@ export class FadeOut
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return (_) => {
@@ -198,7 +181,6 @@ export class FadeOut
         },
         initialValues: {
           opacity: 1,
-          ...initialValues,
         },
         callback: callback,
       };
@@ -208,8 +190,7 @@ export class FadeOut
 
 export class FadeOutRight
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeOutRight {
     return new FadeOutRight();
   }
@@ -218,7 +199,6 @@ export class FadeOutRight
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -233,7 +213,6 @@ export class FadeOutRight
         initialValues: {
           opacity: 1,
           transform: [{ translateX: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -243,8 +222,7 @@ export class FadeOutRight
 
 export class FadeOutLeft
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeOutLeft {
     return new FadeOutLeft();
   }
@@ -253,7 +231,6 @@ export class FadeOutLeft
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -268,7 +245,6 @@ export class FadeOutLeft
         initialValues: {
           opacity: 1,
           transform: [{ translateX: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -278,8 +254,7 @@ export class FadeOutLeft
 
 export class FadeOutUp
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeOutUp {
     return new FadeOutUp();
   }
@@ -288,7 +263,6 @@ export class FadeOutUp
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -303,7 +277,6 @@ export class FadeOutUp
         initialValues: {
           opacity: 1,
           transform: [{ translateY: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -313,8 +286,7 @@ export class FadeOutUp
 
 export class FadeOutDown
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): FadeOutDown {
     return new FadeOutDown();
   }
@@ -323,7 +295,6 @@ export class FadeOutDown
     const delayFunction = this.getDelayFunction();
     const [animation, config] = this.getAnimationAndConfig();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
     const delay = this.getDelay();
 
     return () => {
@@ -338,7 +309,6 @@ export class FadeOutDown
         initialValues: {
           opacity: 1,
           transform: [{ translateY: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };

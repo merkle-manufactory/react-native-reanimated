@@ -6,8 +6,7 @@ import { ComplexAnimationBuilder } from '../animationBuilder';
 
 export class StretchInX
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): StretchInX {
     return new StretchInX();
   }
@@ -17,7 +16,6 @@ export class StretchInX
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -27,7 +25,6 @@ export class StretchInX
         },
         initialValues: {
           transform: [{ scaleX: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -37,8 +34,7 @@ export class StretchInX
 
 export class StretchInY
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): StretchInY {
     return new StretchInY();
   }
@@ -48,7 +44,6 @@ export class StretchInY
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -58,7 +53,6 @@ export class StretchInY
         },
         initialValues: {
           transform: [{ scaleY: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -68,8 +62,7 @@ export class StretchInY
 
 export class StretchOutX
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): StretchOutX {
     return new StretchOutX();
   }
@@ -79,7 +72,6 @@ export class StretchOutX
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -89,7 +81,6 @@ export class StretchOutX
         },
         initialValues: {
           transform: [{ scaleX: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -99,8 +90,7 @@ export class StretchOutX
 
 export class StretchOutY
   extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  implements IEntryExitAnimationBuilder {
   static createInstance(): StretchOutY {
     return new StretchOutY();
   }
@@ -110,7 +100,6 @@ export class StretchOutY
     const [animation, config] = this.getAnimationAndConfig();
     const delay = this.getDelay();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -120,7 +109,6 @@ export class StretchOutY
         },
         initialValues: {
           transform: [{ scaleY: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };

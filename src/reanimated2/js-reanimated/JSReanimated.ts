@@ -1,22 +1,22 @@
 import MapperRegistry from './MapperRegistry';
-import Mapper from './Mapper';
 import MutableValue from './MutableValue';
+import Mapper from './Mapper';
 import { NativeReanimated } from '../NativeReanimated/NativeReanimated';
-import { Timestamp, NestedObjectValues } from '../commonTypes';
-import { isJest } from '../PlatformChecker';
+import { Timestamp } from '../animation/commonTypes';
+import { NestedObjectValues } from '../commonTypes';
 
 export default class JSReanimated extends NativeReanimated {
   _valueSetter?: <T>(value: T) => void = undefined;
 
   _renderRequested = false;
-  _mapperRegistry: MapperRegistry<any> = new MapperRegistry(this);
+  _mapperRegistry = new MapperRegistry(this);
   _frames: ((timestamp: Timestamp) => void)[] = [];
   timeProvider: { now: () => number };
 
   constructor() {
     super(false);
-    if (isJest()) {
-      this.timeProvider = { now: () => global.ReanimatedDataMock.now() };
+    if (process.env.JEST_WORKER_ID) {
+      this.timeProvider = { now: () => Date.now() };
     } else {
       this.timeProvider = { now: () => window.performance.now() };
     }
@@ -103,27 +103,5 @@ export default class JSReanimated extends NativeReanimated {
     console.warn(
       '[Reanimated] enableLayoutAnimations is not available for WEB yet'
     );
-  }
-
-  registerSensor(): number {
-    console.warn('[Reanimated] useAnimatedSensor is not available on web yet.');
-    return -1;
-  }
-
-  unregisterSensor(): void {
-    // noop
-  }
-
-  jestResetModule() {
-    if (isJest()) {
-      /**
-       * If someone used timers to stop animation before the end,
-       * then _renderRequested was set as true
-       * and any new update from another test wasn't applied.
-       */
-      this._renderRequested = false;
-    } else {
-      throw Error('This method can be only use in Jest testing.');
-    }
   }
 }

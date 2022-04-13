@@ -1,8 +1,8 @@
-#import <RNReanimated/REACondNode.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAUtils.h>
+#import "REACondNode.h"
 #import <React/RCTConvert.h>
 #import <React/RCTLog.h>
+#import "REANodesManager.h"
+#import "REAUtils.h"
 
 @implementation REACondNode {
   NSNumber *_condNodeID;

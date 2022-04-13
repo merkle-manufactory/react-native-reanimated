@@ -1,7 +1,7 @@
-#import <RNReanimated/REAClockNodes.h>
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAParamNode.h>
-#import <RNReanimated/REAValueNode.h>
+#import "REAParamNode.h"
+#import "REAClockNodes.h"
+#import "REANodesManager.h"
+#import "REAValueNode.h"
 
 @implementation REAParamNode {
   NSMutableArray<REANodeID> *_argstack;

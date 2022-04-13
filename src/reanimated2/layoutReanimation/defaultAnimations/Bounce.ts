@@ -4,14 +4,13 @@ import {
 } from '../animationBuilder/commonTypes';
 import { withSequence, withTiming } from '../../animation';
 import { Dimensions } from 'react-native';
-import { ComplexAnimationBuilder } from '../animationBuilder/ComplexAnimationBuilder';
+import { BaseAnimationBuilder } from '../animationBuilder/BaseAnimationBuilder';
 
 const { width, height } = Dimensions.get('window');
 
 export class BounceIn
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceIn {
     return new BounceIn();
   }
@@ -29,7 +28,6 @@ export class BounceIn
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -51,7 +49,6 @@ export class BounceIn
         },
         initialValues: {
           transform: [{ scale: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -60,9 +57,8 @@ export class BounceIn
 }
 
 export class BounceInDown
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceInDown {
     return new BounceInDown();
   }
@@ -80,7 +76,6 @@ export class BounceInDown
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -106,7 +101,6 @@ export class BounceInDown
               translateY: height,
             },
           ],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -115,9 +109,8 @@ export class BounceInDown
 }
 
 export class BounceInUp
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceInUp {
     return new BounceInUp();
   }
@@ -135,7 +128,6 @@ export class BounceInUp
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -157,7 +149,6 @@ export class BounceInUp
         },
         initialValues: {
           transform: [{ translateY: -height }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -166,9 +157,8 @@ export class BounceInUp
 }
 
 export class BounceInLeft
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceInLeft {
     return new BounceInLeft();
   }
@@ -186,7 +176,6 @@ export class BounceInLeft
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -208,7 +197,6 @@ export class BounceInLeft
         },
         initialValues: {
           transform: [{ translateX: -width }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -217,9 +205,8 @@ export class BounceInLeft
 }
 
 export class BounceInRight
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceInRight {
     return new BounceInRight();
   }
@@ -237,7 +224,6 @@ export class BounceInRight
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -259,7 +245,6 @@ export class BounceInRight
         },
         initialValues: {
           transform: [{ translateX: width }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -268,9 +253,8 @@ export class BounceInRight
 }
 
 export class BounceOut
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceOut {
     return new BounceOut();
   }
@@ -288,7 +272,6 @@ export class BounceOut
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -310,7 +293,6 @@ export class BounceOut
         },
         initialValues: {
           transform: [{ scale: 1 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -319,9 +301,8 @@ export class BounceOut
 }
 
 export class BounceOutDown
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceOutDown {
     return new BounceOutDown();
   }
@@ -339,7 +320,6 @@ export class BounceOutDown
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -363,7 +343,6 @@ export class BounceOutDown
         },
         initialValues: {
           transform: [{ translateY: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -372,9 +351,8 @@ export class BounceOutDown
 }
 
 export class BounceOutUp
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceOutUp {
     return new BounceOutUp();
   }
@@ -392,7 +370,6 @@ export class BounceOutUp
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -416,7 +393,6 @@ export class BounceOutUp
         },
         initialValues: {
           transform: [{ translateY: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -425,9 +401,8 @@ export class BounceOutUp
 }
 
 export class BounceOutLeft
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceOutRight {
     return new BounceOutLeft();
   }
@@ -445,7 +420,6 @@ export class BounceOutLeft
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -469,7 +443,6 @@ export class BounceOutLeft
         },
         initialValues: {
           transform: [{ translateX: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };
@@ -478,9 +451,8 @@ export class BounceOutLeft
 }
 
 export class BounceOutRight
-  extends ComplexAnimationBuilder
-  implements IEntryExitAnimationBuilder
-{
+  extends BaseAnimationBuilder
+  implements IEntryExitAnimationBuilder {
   static createInstance(): BounceOutRight {
     return new BounceOutRight();
   }
@@ -498,7 +470,6 @@ export class BounceOutRight
     const delay = this.getDelay();
     const duration = this.getDuration();
     const callback = this.callbackV;
-    const initialValues = this.initialValues;
 
     return () => {
       'worklet';
@@ -522,7 +493,6 @@ export class BounceOutRight
         },
         initialValues: {
           transform: [{ translateX: 0 }],
-          ...initialValues,
         },
         callback: callback,
       };

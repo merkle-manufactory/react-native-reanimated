@@ -1,6 +1,7 @@
-#import <RNReanimated/REANodesManager.h>
-#import <RNReanimated/REAOperatorNode.h>
 #include <tgmath.h>
+
+#import "REANodesManager.h"
+#import "REAOperatorNode.h"
 
 typedef id (^REAOperatorBlock)(NSArray<REANode *> *inputNodes);
 
